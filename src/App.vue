@@ -68,14 +68,14 @@ const items = ref<Item[]>([
   }
 ])
 
-// const storeSection = () => {
-//   items.value.unshift({
-//     id: 3,
-//     name: sectionName.value,
-//     subItems: []
-//   })
-//   sectionName.value = ''
-// }
+const storeSection = () => {
+  items.value.unshift({
+    id: items.value[items.value.length - 1].id || 0,
+    name: sectionName.value,
+    subItems: []
+  })
+  sectionName.value = ''
+}
 </script>
 
 <template>
@@ -85,7 +85,7 @@ const items = ref<Item[]>([
       <p class="text-md text-gray-500">Find this project useful? You can buy me a ☕ or a 🍺.</p>
     </div>
 
-    <!-- <form @submit.prevent="storeSection()">
+    <form @submit.prevent="storeSection()">
       <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
         >Search</label
       >
@@ -104,7 +104,7 @@ const items = ref<Item[]>([
           Add Section
         </button>
       </div>
-    </form> -->
+    </form>
 
     <Sortable
       v-if="items.length > 0"
